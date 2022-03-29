@@ -16,4 +16,4 @@ class Finance:
 
 
     def F_phase_estimation(self):
-        
+        pass
