@@ -51,7 +51,7 @@ def circuit(params):
     return qml.expval(qml.PauliZ(1))
 
 params = [0.1, 0.3, 0.2, 0.3, 0.1, 0.2, 0.3 ]
-drawer = qml.draw(circuit, show_all_wires=True, wire_order=[i1,i2,i3,i4,i5,i6,i7,0])
+drawer = qml.draw(circuit, show_all_wires=True, wire_order=['i1','i2','i3','i4','i5','i6','i7',0])
 print(drawer(params))
 
    
