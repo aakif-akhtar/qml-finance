@@ -36,15 +36,5 @@ class Finance:
 ###############################################################################################################################      
 dev = qml.device('default.qubit', wires=['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', '0'])
 
-def my_circuit(x4, x7, y1, y3, y5, z2, z6):
-    qml.Rx4(x4, wires=['i1','0'])
-    qml.Ry5(y5, wires=['i1', '0'])
-    qml.Rz6(z6, wires=['i1','0'])
-    qml.Rx7(x7, wires=['i2','0'])
-    qml.Rx4(x4, wires='0')
-    qml.Ry1(y1, wires='0')
-    qml.Ry3(y3, wires='0')
-    qml.Rz2(y3, wires='0')
-    
    
 
