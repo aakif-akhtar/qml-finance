@@ -36,5 +36,23 @@ class Finance:
 ###############################################################################################################################      
 dev = qml.device('default.qubit', wires=['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', '0'])
 
+
+@qml.qnode(dev)
+def circuit(params):
+    qml.Ry(params[1], wires='0')
+    qml.Rz(params[2], wires='0')
+    qml.Ry(params[3], wires='0')
+   
+    qml.Rx(params[4], wires=['0','i1'])
+    qml.Ry(params[5], wires=['0','i1'])
+    qml.Rz(params[6], wires=['0','i1'])
+    qml.Rx(params[7], wires=['0','i2'])
+
+    return qml.expval(qml.PauliZ(1))
+
+params = [0.1, 0.3, 0.2, 0.3, 0.1, 0.2, 0.3 ]
+drawer = qml.draw(circuit, show_all_wires=True, wire_order=[2,1,0,3])
+print(drawer(params))
+
    
 
