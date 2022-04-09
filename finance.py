@@ -66,7 +66,7 @@ class Finance:
         self.quantum_circuit_born_machine(phase)
         self.controlled_rotation_circuit_ansatz(w)
 
-        return qml.expval(qml.PauliZ(1)) #to be changed
+        return qml.sample(qml.PauliZ(0)), qml.sample(qml.PauliZ(1)) #to be changed
         # https://pennylane.readthedocs.io/en/stable/introduction/measurements.html
 
 
