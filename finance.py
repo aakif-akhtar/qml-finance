@@ -7,13 +7,14 @@ from numpy import NaN, complex128
 from pennylane.ops.qubit import PauliX, PauliZ
 from qiskit import *
 from pennylane import numpy as np
+from sympy import total_degree
 
 
 class Finance:
 
     global dev
 
-    dev = qml.device('lightning.qubit', wires=['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', '0'])
+    dev = qml.device('lightning.qubit', wires=9, shots = pow(2,5))
 
     def __init__(self, time_step, N, m):
         self.time_step = time_step
@@ -27,8 +28,8 @@ class Finance:
 
     def single_qubit_layer(self, phase):
         for i in range(self.n+ self.m):
-            qml.RX(phase, i)
-            qml.RZ(phase, i)
+            qml.RX(phase[0], i)
+            qml.RZ(phase[1], i)
 
     def entangling_layer(self):
         total_wires = self.m+self.n
@@ -97,9 +98,10 @@ class Finance:
 
         q_delta = 0.1
         rng_seed = 0
-        phase = NaN #to be updated
+        phase = np.array([np.pi, np.pi/2], requires_grad = True) #to be updated
         # steps = 100
-
+        coeff = [1,-1,-1,-1,1,1,1,-1]
+        obs = [qml.Identity(wires = self.total_qubit), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-3)), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2), qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3)]
         # opt = qml.AdamOptimizer(stepsize=0.01, beta1=0.9, beta2=0.99, eps=tol)
         np.random.seed(rng_seed)
 
@@ -114,7 +116,7 @@ class Finance:
 
         
 
-        return qml.sample(qml.PauliZ(0)), qml.sample(qml.PauliZ(1)) #to be changed
+        return qml.sample(qml.Hamiltonian(coeff, obs)) #to be changed
         # https://pennylane.readthedocs.io/en/stable/introduction/measurements.html
 
 
