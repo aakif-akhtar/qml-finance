@@ -101,7 +101,7 @@ class Finance:
         phase = np.array([np.pi, np.pi/2], requires_grad = True) #to be updated
         # steps = 100
         coeff = [1,-1,-1,-1,1,1,1,-1]
-        obs = [qml.Identity(self.total_qubit), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-3)), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2), qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3)]
+        obs = [qml.Identity(self.total_qubit), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2), qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3), qml.PauliZ(self.total_qubit-1)@qml.PauliZ(self.total_qubit-2)@qml.PauliZ(self.total_qubit-3)]
         # opt = qml.AdamOptimizer(stepsize=0.01, beta1=0.9, beta2=0.99, eps=tol)
         np.random.seed(rng_seed)
 
