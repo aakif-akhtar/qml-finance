@@ -4,24 +4,24 @@ from math import *
 from pylab import *
 
 def A(t,T):
-    print("inside At")
+    # print("inside At")
     evaldate=Settings.instance().evaluationDate
     forward = crvToday.forwardRate(t, t,Continuous, NoFrequency).rate()
     value = B(t,T)*forward - 0.25*sigma*B(t,T)*sigma*B(t,T)*B(0.0,2.0*t)
     return exp(value)*crvToday.discount(T)/crvToday.discount(t)
 
 def B(t,T):
-    print("inside B")
+    # print("inside B")
     return (1.0-exp(-a*(T-t)))/a
 
 def gamma(t):
-        print("Inside gamma")
+        # print("Inside gamma")
         forwardRate =crvToday.forwardRate(t, t, Continuous, NoFrequency).rate()
         temp = sigma*(1.0 - exp(-a*t))/a
         return (forwardRate + 0.5*temp*temp)
 
 def gamma_v(t): #vectorized version of gamma(t)
-    print("inside gamma_v")
+    # print("inside gamma_v")
     res=np.zeros(len(t))
     for i in range(len(t)):
         res[i]=gamma(t[i])
