@@ -143,7 +143,7 @@ bonds=np.exp(bonds)
 bondsmean=np.mean(bonds,axis=0)
 #plot(T,bondsmean)
 #plot(T,[crvToday.discount(T[iT]) for iT in xrange(len(T))])
-#show()
+# show()
 
 startDate=Date(26,12,2013)
 
@@ -176,7 +176,7 @@ plot(range(10),[crvMat[0][0].forwardRate(k, k,Continuous, NoFrequency).rate() fo
 for i in range(min(Nsim,10)):
     plot(range(10),[crvMat[i][1].forwardRate(k, k,Continuous, NoFrequency).rate() for k in range(10)])
 title('generated yield curves')
-# show()
+show()
 
 #indexes definitions
 forecastTermStructure = RelinkableYieldTermStructureHandle()
